@@ -8,3 +8,8 @@ jobs:
       - checkout
       - newman/newman-run:
           collection: ./DEX DEV.postman_collection.json
+workflows:
+  version: 2.1
+  deploy:
+    jobs:
+      - newman-collection-run
