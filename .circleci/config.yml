@@ -8,7 +8,7 @@ jobs:
       - checkout
       - newman/newman-run:
           collection: ./DatumandSchema.postman_collection.json
-          environment: http://dev-alb-833442216.us-east-1.elb.amazonaws.com
+           environment: http://dev-alb-833442216.us-east-1.elb.amazonaws.com
 workflows:
   version: 2.1
   deploy:
