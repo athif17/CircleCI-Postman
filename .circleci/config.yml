@@ -12,4 +12,5 @@ workflows:
   version: 2.1
   deploy:
     jobs:
-      - newman-collection-run
+      - newman-collection-run:
+          context: spraoi-context
