@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - newman/newman-run:
-          collection: ./Datuma.postman_collection.json
+          collection: ./collection.json
           environment: ./DEV.postman_environment.json
 workflows:
   version: 2.1
