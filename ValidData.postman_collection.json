@@ -1,0 +1,429 @@
+{
+	"info": {
+		"_postman_id": "0870393e-a4f7-4a58-8e70-f68419d82569",
+		"name": "ValidData",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Dataset create with valid csv file",
+			"item": [
+				{
+					"name": "Create Dataset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c68ee587-fa1e-413c-84eb-bb226f0962d8",
+								"exec": [
+									"bodyData=JSON.parse(responseBody);",
+									"",
+									"pm.environment.set(\"Datasetname\", bodyData[0].info.name);",
+									"pm.environment.set(\"Datasetid\", bodyData[0].info.datasetId);",
+									"",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"   ",
+									"pm.test(\"Body matches dataset name\", function () {",
+									"bodyData=JSON.parse(responseBody);",
+									"    pm.expect(bodyData[0].info.name).equal(postman.getEnvironmentVariable(\"Datasetname\"));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-user-id",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"ath_test26\",\n\t\"description\": \"ath_test26\",\n\t\"format\": \"csv\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/validcsvfile3.csv\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
+						},
+						"url": {
+							"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/dataset/",
+							"protocol": "http",
+							"host": [
+								"dev-alb-833442216",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"dataset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get dataset by ids",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "99893715-066f-4442-990f-29d4f6bda529",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Dataset name matched\", function(){",
+									"    var res=JSON.parse(responseBody);",
+									"    ",
+									"pm.expect(res[0].info.name).equal(postman.getEnvironmentVariable(\"Datasetname\"));",
+									"});",
+									"",
+									"setTimeout(function(){}, [10000]);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b7fcecf2-6912-4a36-9fec-58f8eecb31f0",
+								"exec": [
+									"setTimeout(function(){}, [7000]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-user-id",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/dataset/ids?id=spr:bz:ds::e8265bbf-af16-47f5-8898-0e0086b61fd6",
+							"protocol": "http",
+							"host": [
+								"dev-alb-833442216",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"dataset",
+								"ids"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "spr:bz:ds::e8265bbf-af16-47f5-8898-0e0086b61fd6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Associate schema with version to dataset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "605997ab-3ef2-44fd-b58f-c438c4725e63",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Associated schema with version to dataset\", function(){",
+									"    var res=JSON.parse(responseBody);",
+									"    ",
+									"pm.expect(res[0].info.name).equal(postman.getEnvironmentVariable(\"Datasetname\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-user-id",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"jsonType\":\"defineSchema\",\n\t\"datasetId\":\"{{Datasetid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"schemaId\":\"spr:bz:schema::ed8f51a0-86bc-464b-9b8b-576c89dd8c8f:1\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+						},
+						"url": {
+							"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/events",
+							"protocol": "http",
+							"host": [
+								"dev-alb-833442216",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update dataset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cae9dbf7-3cd0-4c9c-81e5-08c253d29627",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Dataset updated successfully\", function(){",
+									"    var res=JSON.parse(responseBody);",
+									"    ",
+									"pm.expect(res.info.datasetId).equal(postman.getEnvironmentVariable(\"Datasetid\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-user-id",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"datasetId\":\"{{Datasetid}}\",\n\t\"description\":\"testingdata2\"\n}"
+						},
+						"url": {
+							"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/dataset/update",
+							"protocol": "http",
+							"host": [
+								"dev-alb-833442216",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"dataset",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add tag to dataset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b7a74476-6610-4baa-a8e9-80b48994daa9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Tag is added to dataset successfully\", function(){",
+									"    var res=JSON.parse(responseBody);",
+									"    ",
+									"pm.expect(res[0].info.datasetId).equal(postman.getEnvironmentVariable(\"Datasetid\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-user-id",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"jsonType\":\"addTag\",\n\t\"datasetId\":\"{{Datasetid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"tagName\":\"test\",\n\t\"tagValue\":\"data\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+						},
+						"url": {
+							"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/events",
+							"protocol": "http",
+							"host": [
+								"dev-alb-833442216",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove tag from dataset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f6f85591-e9e0-4c5a-b599-428d06125ee3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Tag removed from dataset successfully\", function(){",
+									"    var res=JSON.parse(responseBody);",
+									"    ",
+									"pm.expect(res[0].info.datasetId).equal(postman.getEnvironmentVariable(\"Datasetid\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-user-id",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"jsonType\":\"removeTag\",\n\t\"datasetId\":\"{{Datasetid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"tagName\":\"test\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+						},
+						"url": {
+							"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/events",
+							"protocol": "http",
+							"host": [
+								"dev-alb-833442216",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
