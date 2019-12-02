@@ -1,0 +1,693 @@
+{
+	"info": {
+		"_postman_id": "99c8d60a-2a0c-47eb-b795-a424058af376",
+		"name": "DatumandSchema",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Datum and Schema Copy",
+			"item": [
+				{
+					"name": "Datum creation and associate with schema",
+					"item": [
+						{
+							"name": "Create Datum Definition",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "57b4fc24-aa11-4689-b6b8-fec627ae0e38",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"datumId\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"ath_testing12\",\n\t\"description\": \"ath_testing12\",\n\t\"definitionType\": \"string\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								},
+								"description": "Creates a new datum in DB"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "74b092a6-b13a-4597-b78d-9fde93f3b1c3",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"name\", bodyData.name);",
+											"pm.environment.set(\"description\", bodyData.description);",
+											"pm.environment.set(\"definitionType\", bodyData.definitionType);",
+											"",
+											"pm.test(\"datum definition id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.datumDefinitionId).equal(postman.getEnvironmentVariable(\"datumId\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dat-definition/{{datumId}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dat-definition",
+										"{{datumId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Schema",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "25058ff5-e24b-417f-a965-4d7a7fb481ae",
+										"exec": [
+											"response =JSON.parse(responseBody)\r",
+											"\r",
+											"pm.environment.set(\"SchemaId\", response.schemaId);\r",
+											"pm.environment.set(\"Version\", response.version);\r",
+											"\r",
+											"pm.test(\"schemaId is generated\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"schemaId\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"testschema_ath32\",\n\t\"datumIds\":[\n\t\t{\n\t\t\t\"datumId\":\"{{datumId}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"Test17\"\n\t\t}\n\t\t],\n\t\t\"description\": \"sample test1\",\n\t\t\"tags\": [\n\t\t{\n\t\t\t\"name\":\"test2\",\n\t\t\t\"value\":\"2\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"env2\",\n\t\t\t\"value\":\"qa\"\n\t\t}\n\t\t]\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get particular schema",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7231193c-6059-4a3b-8e25-52af046d169c",
+										"exec": [
+											"response =JSON.parse(responseBody)",
+											"pm.environment.set(\"SchemaName\", response.schema.name);",
+											"",
+											"pm.test(\"schema id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res.schema.id).equal(postman.getEnvironmentVariable(\"SchemaId\"));",
+											"});",
+											"",
+											"",
+											"    "
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema-id/{{SchemaId}}:{{Version}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema-id",
+										"{{SchemaId}}:{{Version}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Adding new datum to schema",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "62b09755-0bfe-413e-927f-52196b4c1b66",
+										"exec": [
+											"response =JSON.parse(responseBody)",
+											"pm.environment.set(\"version2\", response.version);",
+											"",
+											"pm.test(\"new datum id is added to schema\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res.schemaId).equal(postman.getEnvironmentVariable(\"SchemaId\"));",
+											"pm.expect(res.version).equal(postman.getEnvironmentVariable(\"version2\"));",
+											"    ",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"{{SchemaName}}\",\n\t\"schemaId\": \"{{SchemaId}}\",\n\t\"description\": \"test\",\n\t\"datumIds\":[\n\t\t{\n\t\t\t\"datumId\":\"{{datumId2}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"test\"\n\t\t}]\n}\t\t"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get schema after edit",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6f69141a-d5d0-406a-9ba9-0b4e1f6f0a57",
+										"exec": [
+											"pm.test(\"new datum id and version are updated for the same schema\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res.schema.id).equal(postman.getEnvironmentVariable(\"SchemaId\"));",
+											"pm.expect(res.version.version.versionNumber).equal(postman.getEnvironmentVariable(\"version2\"));",
+											"pm.expect(res.version.definitions[0].datumDefinitionId).equal(postman.getEnvironmentVariable(\"datumId2\")); ",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema-id/{{SchemaId}}:{{version2}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema-id",
+										"{{SchemaId}}:{{version2}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Duplicate datum name",
+					"item": [
+						{
+							"name": "Duplicate datum name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "44d826d1-19b6-4360-ba27-53936a6a7a27",
+										"exec": [
+											"pm.test(\"Duplicate Datum Name\", function(){",
+											"    pm.expect(pm.response.text()).to.include(\"Datum creation failed\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"{{name}}\",\n\t\"description\": \"{{description}}\",\n\t\"definitionType\": \"{{definitionType}}\"\n}"
+								},
+								"url": {
+									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/datum-definition",
+									"protocol": "http",
+									"host": [
+										"dev-alb-833442216",
+										"us-east-1",
+										"elb",
+										"amazonaws",
+										"com"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Active/inactive datum name",
+					"item": [
+						{
+							"name": "De-activate datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a40e7a28-7a52-4919-8f84-994e1a486c4e",
+										"exec": [
+											"pm.test(\"Datum is deactivated successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).equal(pm.environment.get(\"datumId2\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"isDeleted\":true\n}"
+								},
+								"url": {
+									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/datum/{{datumId2}}",
+									"protocol": "http",
+									"host": [
+										"dev-alb-833442216",
+										"us-east-1",
+										"elb",
+										"amazonaws",
+										"com"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum",
+										"{{datumId2}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search schema for inactive datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "61cbb7b4-a323-4f84-96f6-1ce23e21a388",
+										"exec": [
+											"pm.test(\"Inactive datum is fetched successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.schema.name).equal(pm.environment.get(\"SchemaName\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/schema-id/{{SchemaId}}:{{version2}}",
+									"protocol": "http",
+									"host": [
+										"dev-alb-833442216",
+										"us-east-1",
+										"elb",
+										"amazonaws",
+										"com"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema-id",
+										"{{SchemaId}}:{{version2}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Re-activate datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b9023f08-95a9-49ac-afeb-86ea4d1157f5",
+										"exec": [
+											"pm.test(\"Datum is reactivated successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).equal(pm.environment.get(\"datumId2\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"isDeleted\":false\n}"
+								},
+								"url": {
+									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/datum/{{datumId2}}",
+									"protocol": "http",
+									"host": [
+										"dev-alb-833442216",
+										"us-east-1",
+										"elb",
+										"amazonaws",
+										"com"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum",
+										"{{datumId2}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Duplicate schema name",
+					"item": [
+						{
+							"name": "Duplicate schema name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7ab00b45-1810-4394-8b4a-cc64483c6f01",
+										"exec": [
+											"pm.test(\"Duplicate schema found\", function(){",
+											"    pm.expect(pm.response.text()).to.include(\"Duplicate schema found\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"{{SchemaName}}\",\n\t\"datumIds\":[\n\t\t{\n\t\t\t\"datumId\":\"{{datumId}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"Test17\"\n\t\t}\n\t\t],\n\t\t\"description\": \"sample test1\",\n\t\t\"tags\": [\n\t\t{\n\t\t\t\"name\":\"test2\",\n\t\t\t\"value\":\"2\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"env2\",\n\t\t\t\"value\":\"qa\"\n\t\t}\n\t\t]\n}"
+								},
+								"url": {
+									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/schema",
+									"protocol": "http",
+									"host": [
+										"dev-alb-833442216",
+										"us-east-1",
+										"elb",
+										"amazonaws",
+										"com"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
