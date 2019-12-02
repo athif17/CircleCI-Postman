@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - newman/newman-run:
-          collection: ./ValidData.postman_collection.json
+          collection: ./DEX_DEV.postman_collection.json
           environment: ./DEV.postman_environment.json
 workflows:
   version: 2.1
