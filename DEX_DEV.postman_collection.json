@@ -57,9 +57,9 @@
 									"raw": "{\n\t\"name\": \"sample datum\",\n\t\"description\": \"sample datum\",\n\t\"definitionType\": \"string\"\n}"
 								},
 								"url": {
-									"raw": "{{url}}/datasets/api/v1/datum-definition",
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"datasets",
@@ -117,9 +117,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/datasets/api/v1/dat-definition/{{datumId}}",
+									"raw": "{{URL}}/datasets/api/v1/dat-definition/{{datumId}}",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"datasets",
@@ -178,9 +178,9 @@
 									"raw": "{\n\t\"name\": \"testschema_ath_sample\",\n\t\"datumIds\":[\n\t\t{\n\t\t\t\"datumId\":\"{{datumId}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"Test17\"\n\t\t}\n\t\t],\n\t\t\"description\": \"sample test1\",\n\t\t\"tags\": [\n\t\t{\n\t\t\t\"name\":\"test2\",\n\t\t\t\"value\":\"2\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"env2\",\n\t\t\t\"value\":\"qa\"\n\t\t}\n\t\t]\n}"
 								},
 								"url": {
-									"raw": "{{url}}/datasets/api/v1/schema",
+									"raw": "{{URL}}/datasets/api/v1/schema",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"datasets",
@@ -238,9 +238,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/datasets/api/v1/schema-id/{{SchemaId}}:{{Version}}",
+									"raw": "{{URL}}/datasets/api/v1/schema-id/{{SchemaId}}:{{Version}}",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"datasets",
@@ -303,9 +303,9 @@
 									"raw": "{\n\t\"name\": \"{{SchemaName}}\",\n\t\"schemaId\": \"{{SchemaId}}\",\n\t\"description\": \"test\",\n\t\"datumIds\":[\n\t\t{\n\t\t\t\"datumId\":\"{{datumId2}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"test\"\n\t\t}]\n}\t\t"
 								},
 								"url": {
-									"raw": "{{url}}/datasets/api/v1/schema",
+									"raw": "{{URL}}/datasets/api/v1/schema",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"datasets",
@@ -361,9 +361,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/datasets/api/v1/schema-id/{{SchemaId}}:{{version2}}",
+									"raw": "{{URL}}/datasets/api/v1/schema-id/{{SchemaId}}:{{version2}}",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"datasets",
@@ -425,14 +425,9 @@
 									"raw": "{\n\t\"name\": \"{{name}}\",\n\t\"description\": \"{{description}}\",\n\t\"definitionType\": \"{{definitionType}}\"\n}"
 								},
 								"url": {
-									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/datum-definition",
-									"protocol": "http",
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
 									"host": [
-										"dev-alb-833442216",
-										"us-east-1",
-										"elb",
-										"amazonaws",
-										"com"
+										"{{URL}}"
 									],
 									"path": [
 										"datasets",
@@ -492,14 +487,9 @@
 									"raw": "{\n\t\"isDeleted\":true\n}"
 								},
 								"url": {
-									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/datum/{{datumId2}}",
-									"protocol": "http",
+									"raw": "{{URL}}/datasets/api/v1/datum/{{datumId2}}",
 									"host": [
-										"dev-alb-833442216",
-										"us-east-1",
-										"elb",
-										"amazonaws",
-										"com"
+										"{{URL}}"
 									],
 									"path": [
 										"datasets",
@@ -551,14 +541,9 @@
 									}
 								],
 								"url": {
-									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/schema-id/{{SchemaId}}:{{version2}}",
-									"protocol": "http",
+									"raw": "{{URL}}/datasets/api/v1/schema-id/{{SchemaId}}:{{version2}}",
 									"host": [
-										"dev-alb-833442216",
-										"us-east-1",
-										"elb",
-										"amazonaws",
-										"com"
+										"{{URL}}"
 									],
 									"path": [
 										"datasets",
@@ -612,14 +597,9 @@
 									"raw": "{\n\t\"isDeleted\":false\n}"
 								},
 								"url": {
-									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/datum/{{datumId2}}",
-									"protocol": "http",
+									"raw": "{{URL}}/datasets/api/v1/datum/{{datumId2}}",
 									"host": [
-										"dev-alb-833442216",
-										"us-east-1",
-										"elb",
-										"amazonaws",
-										"com"
+										"{{URL}}"
 									],
 									"path": [
 										"datasets",
@@ -671,14 +651,9 @@
 									}
 								],
 								"url": {
-									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/schema-id/{{SchemaId}}:{{version2}}",
-									"protocol": "http",
+									"raw": "{{URL}}/datasets/api/v1/schema-id/{{SchemaId}}:{{version2}}",
 									"host": [
-										"dev-alb-833442216",
-										"us-east-1",
-										"elb",
-										"amazonaws",
-										"com"
+										"{{URL}}"
 									],
 									"path": [
 										"datasets",
@@ -739,9 +714,9 @@
 									"raw": "{\n\t\"name\": \"{{SchemaName}}\",\n\t\"datumIds\":[\n\t\t{\n\t\t\t\"datumId\":\"{{datumId}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"Test17\"\n\t\t}\n\t\t],\n\t\t\"description\": \"sample test1\",\n\t\t\"tags\": [\n\t\t{\n\t\t\t\"name\":\"test2\",\n\t\t\t\"value\":\"2\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"env2\",\n\t\t\t\"value\":\"qa\"\n\t\t}\n\t\t]\n}"
 								},
 								"url": {
-									"raw": "{{url}}/datasets/api/v1/schema",
+									"raw": "{{URL}}/datasets/api/v1/schema",
 									"host": [
-										"{{url}}"
+										"{{URL}}"
 									],
 									"path": [
 										"datasets",
@@ -817,7 +792,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"name\": \"ath_test30\",\n\t\"description\": \"ath_test30\",\n\t\"format\": \"json\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/validJSONfile21.json\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
+									"raw": "{\n\t\"name\": \"ath_test41\",\n\t\"description\": \"ath_test41\",\n\t\"format\": \"json\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/validJSONfile22.json\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
 								},
 								"url": {
 									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/dataset/",
@@ -938,7 +913,7 @@
 											"    ",
 											"pm.expect(res[0].info.name).equal(postman.getEnvironmentVariable(\"Datasetname\"));",
 											"console.log(res[0].info.name);",
-											"console.log(postman.getEnvironmentVariable(\"Datasetname\"));",
+											"console.log(postman.getEnvironmentVariable(\"Version\"));",
 											"});"
 										],
 										"type": "text/javascript"
@@ -1253,7 +1228,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"name\": \"ath_test31\",\n\t\"description\": \"ath_test31\",\n\t\"format\": \"csv\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/validcsvfile11.csv\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
+									"raw": "{\n\t\"name\": \"ath_test42\",\n\t\"description\": \"ath_test42\",\n\t\"format\": \"csv\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/validcsvfile12.csv\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
 								},
 								"url": {
 									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/dataset/",
@@ -1684,7 +1659,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"name\": \"ath_test32\",\n\t\"description\": \"ath_test32\",\n\t\"format\": \"txt\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/validtxtdata3.txt\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
+									"raw": "{\n\t\"name\": \"ath_test43\",\n\t\"description\": \"ath_test43\",\n\t\"format\": \"txt\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/validtxtdata4.txt\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
 								},
 								"url": {
 									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/dataset/",
@@ -2114,7 +2089,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"name\": \"ath_test33\",\n\t\"description\": \"ath_test33\",\n\t\"format\": \"xml\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/validxmlfile11.xml\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
+									"raw": "{\n\t\"name\": \"ath_test44\",\n\t\"description\": \"ath_test44\",\n\t\"format\": \"xml\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/validxmlfile12.xml\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
 								},
 								"url": {
 									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/dataset/",
@@ -2550,7 +2525,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"name\": \"ath_test34\",\n\t\"description\": \"ath_test34\",\n\t\"format\": \"csv\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 1,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/invalidcsvfile1.csv\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
+									"raw": "{\n\t\"name\": \"ath_test45\",\n\t\"description\": \"ath_test45\",\n\t\"format\": \"csv\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 1,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/invalidcsvfile2.csv\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
 								},
 								"url": {
 									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/dataset/",
@@ -2980,7 +2955,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"name\": \"ath_test35\",\n\t\"description\": \"ath_test35\",\n\t\"format\": \"txt\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/invalidtxtdata1.txt\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
+									"raw": "{\n\t\"name\": \"ath_test46\",\n\t\"description\": \"ath_test46\",\n\t\"format\": \"txt\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/invalidtxtdata2.txt\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
 								},
 								"url": {
 									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/dataset/",
@@ -3410,7 +3385,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"name\": \"ath_test36\",\n\t\"description\": \"ath_test36\",\n\t\"format\": \"json\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/invalidJSONfile2.json\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
+									"raw": "{\n\t\"name\": \"ath_test47\",\n\t\"description\": \"ath_test47\",\n\t\"format\": \"json\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/invalidJSONfile3.json\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
 								},
 								"url": {
 									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/dataset/",
@@ -3840,7 +3815,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"name\": \"ath_test37\",\n\t\"description\": \"ath_test37\",\n\t\"format\": \"xml\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"xmlPath\":\"Transmission/Automobile\",\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/Invalidxmlfile3.xml\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
+									"raw": "{\n\t\"name\": \"ath_test48\",\n\t\"description\": \"ath_test48\",\n\t\"format\": \"xml\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"xmlPath\":\"Transmission/Automobile\",\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/Invalidxmlfile4.xml\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
 								},
 								"url": {
 									"raw": "http://dev-alb-833442216.us-east-1.elb.amazonaws.com/datasets/api/v1/dataset/",
