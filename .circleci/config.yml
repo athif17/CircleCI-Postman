@@ -11,11 +11,13 @@ jobs:
           environment: ./DEV.postman_environment.json
 workflows:
   version: 2.1
+   commit:
+     jobs:
+        - deploy
+     triggers:
+        - schedule:
+            cron: "5 7 * * *"
   deploy:
     jobs:
       - newman-collection-run:
           context: BarrelSandbox
-  commit:
-    triggers:
-      - schedule:
-          cron: "5 7 * * *"
