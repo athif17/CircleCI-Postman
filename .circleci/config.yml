@@ -12,9 +12,11 @@ jobs:
 workflows:
   version: 2.1
   commit:
-     triggers:
-        - schedule:
-            cron: "5 7 * * *"
+    jobs:
+      - deploy
+    triggers:
+      - schedule:
+          cron: "5 7 * * *"
   deploy:
     jobs:
       - newman-collection-run:
