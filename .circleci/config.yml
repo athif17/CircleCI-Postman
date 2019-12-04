@@ -1,9 +1,6 @@
 version: 2.1
 orbs:
   newman: postman/newman@0.0.2
-workflows:
-  version: 2.1
-  commit:
     jobs:
        newman-collection-run:
          executor: newman/postman-newman-docker
@@ -12,9 +9,8 @@ workflows:
          - newman/newman-run:
              collection: ./DEX_DEV.postman_collection.json
              environment: ./DEV.postman_environment.json
-    triggers:
-      - schedule:
-          cron: "5 7 * * *"
+workflows:
+  version: 2.1
     deploy:
       jobs:
         - newman-collection-run:
