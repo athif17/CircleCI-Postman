@@ -5,17 +5,17 @@ workflows:
   version: 2.1
   commit:
     jobs:
-  newman-collection-run:
-    executor: newman/postman-newman-docker
-    steps:
-      - checkout
-      - newman/newman-run:
-          collection: ./DEX_DEV.postman_collection.json
-          environment: ./DEV.postman_environment.json
+       newman-collection-run:
+         executor: newman/postman-newman-docker
+       steps:
+         - checkout
+         - newman/newman-run:
+             collection: ./DEX_DEV.postman_collection.json
+             environment: ./DEV.postman_environment.json
     triggers:
       - schedule:
           cron: "5 7 * * *"
-  deploy:
-    jobs:
-      - newman-collection-run:
-          context: BarrelSandbox
+    deploy:
+      jobs:
+        - newman-collection-run:
+            context: BarrelSandbox
