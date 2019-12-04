@@ -14,4 +14,4 @@ workflows:
   deploy:
     jobs:
       - newman-collection-run:
-        context: BarrelSandbox
+          context: BarrelSandbox
