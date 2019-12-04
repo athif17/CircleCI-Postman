@@ -11,6 +11,12 @@ jobs:
             environment: ./DEV.postman_environment.json
 workflows:
   version: 2.1
+  commit:
+    jobs:
+      - newman-collection-run:
+    triggers:
+      - schedule:
+          cron: "52 7 * * *"
   deploy:
     jobs:
       - newman-collection-run:
