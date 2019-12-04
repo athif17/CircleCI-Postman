@@ -11,7 +11,7 @@ jobs:
             environment: ./DEV.postman_environment.json
 workflows:
   version: 2.1
-    deploy:
-      jobs:
-        - newman-collection-run:
-            context: BarrelSandbox
+  deploy:
+    jobs:
+      - newman-collection-run:
+        context: BarrelSandbox
