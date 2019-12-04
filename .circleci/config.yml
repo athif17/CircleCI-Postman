@@ -1,14 +1,14 @@
 version: 2.1
 orbs:
   newman: postman/newman@0.0.2
-    jobs:
-       newman-collection-run:
-         executor: newman/postman-newman-docker
-       steps:
-         - checkout
-         - newman/newman-run:
-             collection: ./DEX_DEV.postman_collection.json
-             environment: ./DEV.postman_environment.json
+jobs:
+  newman-collection-run:
+    executor: newman/postman-newman-docker
+    steps:
+       - checkout
+       - newman/newman-run:
+            collection: ./DEX_DEV.postman_collection.json
+            environment: ./DEV.postman_environment.json
 workflows:
   version: 2.1
     deploy:
