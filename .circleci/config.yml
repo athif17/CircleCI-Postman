@@ -12,8 +12,6 @@ jobs:
 workflows:
   version: 2.1
    commit:
-     jobs:
-        - deploy
      triggers:
         - schedule:
             cron: "5 7 * * *"
