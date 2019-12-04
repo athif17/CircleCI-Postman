@@ -14,15 +14,11 @@ workflows:
   schedule-workflow: 
     triggers:
       - schedule:
-          cron: "0 * * * *"
+          cron: "35 09 * * *"
           filters:
             branches:
               only:
                 - master
-    jobs:
-      - newman-collection-run:
-          context: BarrelSandbox
-  deploy:
     jobs:
       - newman-collection-run:
           context: BarrelSandbox
