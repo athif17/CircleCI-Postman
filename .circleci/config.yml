@@ -18,6 +18,10 @@ workflows:
     triggers:
       - schedule:
           cron: "52 7 * * *"
+          filters:
+            branches:
+              only:
+                - master
   deploy:
     jobs:
       - newman-collection-run:
