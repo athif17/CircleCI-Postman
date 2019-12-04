@@ -23,7 +23,6 @@ workflows:
             branches:
               only:
                 - master
-  deploy:
     jobs:
       - newman-collection-run:
           context: BarrelSandbox
