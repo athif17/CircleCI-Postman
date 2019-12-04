@@ -13,7 +13,7 @@ workflows:
   version: 2.1
   commit:
     jobs:
-      - master
+      - newman-collection-run:
     triggers:
       - schedule:
           cron: "5 7 * * *"
