@@ -17,7 +17,7 @@ workflows:
           context: BarrelSandbox
     triggers:
       - schedule:
-          cron: "52 7 * * *"
+          cron: "56 7 * * *"
           filters:
             branches:
               only:
