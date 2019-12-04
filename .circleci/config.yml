@@ -15,3 +15,7 @@ workflows:
     jobs:
       - newman-collection-run:
           context: BarrelSandbox
+  commit:
+    triggers:
+      - schedule:
+          cron: "5 7 * * *"
