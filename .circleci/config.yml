@@ -22,7 +22,7 @@ workflows:
     jobs:
       - newman-collection-run:
           context: BarrelSandbox
-   deploy:
-     jobs:
-       - newman-collection-run:
-           context: BarrelSandbox
+  deploy:
+    jobs:
+      - newman-collection-run:
+          context: BarrelSandbox
