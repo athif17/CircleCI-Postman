@@ -1,0 +1,3371 @@
+{
+	"info": {
+		"_postman_id": "054196e3-55f5-4e49-9572-9ac573a515a5",
+		"name": "DEX DEV",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Datum and Schema",
+			"item": [
+				{
+					"name": "Datum creation",
+					"item": [
+						{
+							"name": "Create Date type Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "57b4fc24-aa11-4689-b6b8-fec627ae0e38",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"datetypedatum\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"    console.log(res)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Date_Automation\",\n\t\"description\": \"Testdate\",\n\t\"definitionType\": \"date\",\n\t\"dateFormat\":\"YYYY-MM-DD\",\n    \"format\":\"date\",\n    \"examples\":\"2010-06-25\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								},
+								"description": "Creates a new datum in DB"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "74b092a6-b13a-4597-b78d-9fde93f3b1c3",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"name\", bodyData.name);",
+											"pm.environment.set(\"description\", bodyData.description);",
+											"pm.environment.set(\"definitionType\", bodyData.definitionType);",
+											"",
+											"pm.test(\"datum definition id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.datumDefinitionId).equal(postman.getEnvironmentVariable(\"datetypedatum\"));",
+											"    console.log(res.datumDefinitionId);",
+											"    console.log(postman.getEnvironmentVariable(\"datetypedatum\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dat-definition/{{datetypedatum}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dat-definition",
+										"{{datetypedatum}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Email type string Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "57b4fc24-aa11-4689-b6b8-fec627ae0e38",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"Emailtypedatum\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"    console.log(res)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Email_Automation\",\n\t\"description\": \"Testemail\",\n\t\"definitionType\": \"string\",\n    \"length\":\"25\",\n    \"format\":\"email\",\n    \"examples\":\"test@gmail.com\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								},
+								"description": "Creates a new datum in DB"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "74b092a6-b13a-4597-b78d-9fde93f3b1c3",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"name\", bodyData.name);",
+											"pm.environment.set(\"description\", bodyData.description);",
+											"pm.environment.set(\"definitionType\", bodyData.definitionType);",
+											"",
+											"pm.test(\"datum definition id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.datumDefinitionId).equal(postman.getEnvironmentVariable(\"Emailtypedatum\"));",
+											"    console.log(res.datumDefinitionId);",
+											"    console.log(postman.getEnvironmentVariable(\"Emailtypedatum\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dat-definition/{{Emailtypedatum}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dat-definition",
+										"{{Emailtypedatum}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Integer type Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "57b4fc24-aa11-4689-b6b8-fec627ae0e38",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"Integertypedatum\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"    console.log(res)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"type": "text",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16"
+									},
+									{
+										"key": "x-spr-client-id",
+										"type": "text",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Integer_Automation\",\n\t\"description\": \"TestInteger\",\n\t\"definitionType\": \"integer\",\n    \"examples\":\"7,77,777\",\n    \"min\":0,\n    \"max\":100000\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								},
+								"description": "Creates a new datum in DB"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "74b092a6-b13a-4597-b78d-9fde93f3b1c3",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"name\", bodyData.name);",
+											"pm.environment.set(\"description\", bodyData.description);",
+											"pm.environment.set(\"definitionType\", bodyData.definitionType);",
+											"",
+											"pm.test(\"datum definition id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.datumDefinitionId).equal(postman.getEnvironmentVariable(\"Integertypedatum\"));",
+											"    console.log(res.datumDefinitionId);",
+											"    console.log(postman.getEnvironmentVariable(\"Integertypedatum\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dat-definition/{{Integertypedatum}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dat-definition",
+										"{{Integertypedatum}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Float type Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "57b4fc24-aa11-4689-b6b8-fec627ae0e38",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"floattypedatum\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"    console.log(res)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"type": "text",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16"
+									},
+									{
+										"key": "x-spr-client-id",
+										"type": "text",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Float_Automation\",\n\t\"description\": \"TestFloat\",\n\t\"definitionType\": \"float\",\n    \"examples\":\"44.56,777.65\",\n    \"min\":0,\n    \"max\":100000\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								},
+								"description": "Creates a new datum in DB"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "74b092a6-b13a-4597-b78d-9fde93f3b1c3",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"name\", bodyData.name);",
+											"pm.environment.set(\"description\", bodyData.description);",
+											"pm.environment.set(\"definitionType\", bodyData.definitionType);",
+											"",
+											"pm.test(\"datum definition id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.datumDefinitionId).equal(postman.getEnvironmentVariable(\"floattypedatum\"));",
+											"    console.log(res.datumDefinitionId);",
+											"    console.log(postman.getEnvironmentVariable(\"floattypedatum\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dat-definition/{{floattypedatum}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dat-definition",
+										"{{floattypedatum}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Boolean type Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "57b4fc24-aa11-4689-b6b8-fec627ae0e38",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"Booleantypedatum\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"    console.log(res)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"type": "text",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16"
+									},
+									{
+										"key": "x-spr-client-id",
+										"type": "text",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Boolean_Automation\",\n\t\"description\": \"TestBoolean\",\n\t\"definitionType\": \"boolean\",\n    \"examples\":\"Y,N\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								},
+								"description": "Creates a new datum in DB"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "74b092a6-b13a-4597-b78d-9fde93f3b1c3",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"name\", bodyData.name);",
+											"pm.environment.set(\"description\", bodyData.description);",
+											"pm.environment.set(\"definitionType\", bodyData.definitionType);",
+											"",
+											"pm.test(\"datum definition id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.datumDefinitionId).equal(postman.getEnvironmentVariable(\"Booleantypedatum\"));",
+											"    console.log(res.datumDefinitionId);",
+											"    console.log(postman.getEnvironmentVariable(\"Booleantypedatum\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dat-definition/{{Booleantypedatum}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dat-definition",
+										"{{Booleantypedatum}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create string-Phone Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "57b4fc24-aa11-4689-b6b8-fec627ae0e38",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"Phone-string\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"    console.log(res)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"type": "text",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16"
+									},
+									{
+										"key": "x-spr-client-id",
+										"type": "text",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"String_Phone\",\n\t\"description\": \"String_Phone\",\n\t\"definitionType\": \"string\",\n\t\"examples\":\"user23\",\n    \"format\":\"regex\",\n    \"pattern\":\"(\\\\d{3})-(\\\\d{3})-(\\\\d{4})\",\n    \"length\":25\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								},
+								"description": "Creates a new datum in DB"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "74b092a6-b13a-4597-b78d-9fde93f3b1c3",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"name\", bodyData.name);",
+											"pm.environment.set(\"description\", bodyData.description);",
+											"pm.environment.set(\"definitionType\", bodyData.definitionType);",
+											"",
+											"pm.test(\"datum definition id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.datumDefinitionId).equal(postman.getEnvironmentVariable(\"Phone-string\"));",
+											"    console.log(res.datumDefinitionId);",
+											"    console.log(postman.getEnvironmentVariable(\"Phone-string\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dat-definition/{{Phone-string}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dat-definition",
+										"{{Phone-string}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create string datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "edf11f8c-b7d3-4bee-9d3f-2431c8ab8a25",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"stringdatum\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"    console.log(res)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"stringdatum\",\n\t\"description\": \"stringdatum\",\n\t\"definitionType\": \"string\",\n\t\"examples\":\"user23\",\n    \"format\":\"regex\",\n    \"pattern\":\"[a-zA-Z0-9]\",\n    \"length\":25\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Schema creation",
+					"item": [
+						{
+							"name": "Create Schema",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "25058ff5-e24b-417f-a965-4d7a7fb481ae",
+										"exec": [
+											"response =JSON.parse(responseBody)\r",
+											"\r",
+											"pm.environment.set(\"SchemaId\", response.schemaId);\r",
+											"pm.environment.set(\"Version\", response.version);\r",
+											"\r",
+											"pm.test(\"SchemaId is generated\", function () {\r",
+											"    \r",
+											"    pm.expect(pm.response.text()).to.include(postman.getEnvironmentVariable(\"SchemaId\"));\r",
+											"    console.log(postman.getEnvironmentVariable(\"SchemaId\"));\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "9059b6a2-c86a-4d4f-ac17-57c96c70e9bf",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"schema_Automation\",\n\t\"datumIds\":[\n\t\t{\n\t\t\t\"datumId\":\"{{Integertypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffno\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{Integertypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffid\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{stringdatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffname\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{stringdatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffaddress\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{datetypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffbirthdate\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{Emailtypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffemail\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{stringdatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffgender\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{floattypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffsalary\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{Phone-string}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffphone\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{stringdatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffstate\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{floattypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"stafftaxrate\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{Phone-string}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffaltphone\"\n\t\t}\n\t\t],\n\t\t\"description\": \"schema_Automation\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get particular schema",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7231193c-6059-4a3b-8e25-52af046d169c",
+										"exec": [
+											"response =JSON.parse(responseBody)",
+											"pm.environment.set(\"SchemaName\", response.schema.name);",
+											"",
+											"pm.test(\"schema id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res.schema.id).equal(postman.getEnvironmentVariable(\"SchemaId\"));",
+											"console.log(res.schema.id);",
+											"console.log(postman.getEnvironmentVariable(\"SchemaId\"))",
+											"});",
+											"",
+											"",
+											"    "
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema-id/{{SchemaId}}:{{Version}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema-id",
+										"{{SchemaId}}:{{Version}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Adding new datum to schema",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "62b09755-0bfe-413e-927f-52196b4c1b66",
+										"exec": [
+											"response =JSON.parse(responseBody)",
+											"pm.environment.set(\"version2\", response.version);",
+											"",
+											"pm.test(\"new datum id is added to schema\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res.schemaId).equal(postman.getEnvironmentVariable(\"SchemaId\"));",
+											"pm.expect(res.version).equal(postman.getEnvironmentVariable(\"version2\"));",
+											"console.log(res.schemaId);",
+											"console.log(postman.getEnvironmentVariable(\"SchemaId\"));",
+											"console.log(res.version);",
+											"console.log(postman.getEnvironmentVariable(\"version2\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"{{SchemaName}}\",\n\t\"schemaId\": \"{{SchemaId}}\",\n\t\"description\": \"test\",\n\t\"datumIds\":[\n\t\t{\n\t\t\t\"datumId\":\"{{Emailtypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffaltemail\"\n\t\t}]\n}\t\t"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get schema after edit",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6f69141a-d5d0-406a-9ba9-0b4e1f6f0a57",
+										"exec": [
+											"pm.test(\"new datum id and schema version are updated for the same schema sucessfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res.schema.id).equal(postman.getEnvironmentVariable(\"SchemaId\"));",
+											"pm.expect(res.version.version.versionNumber).equal(postman.getEnvironmentVariable(\"version2\"));",
+											"console.log(res.schema.id);",
+											"console.log(postman.getEnvironmentVariable(\"SchemaId\"));",
+											"console.log(res.version.version.versionNumber);",
+											"console.log(postman.getEnvironmentVariable(\"version2\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema-id/{{SchemaId}}:{{version2}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema-id",
+										"{{SchemaId}}:{{version2}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Duplicate datum name",
+					"item": [
+						{
+							"name": "Duplicate datum name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "44d826d1-19b6-4360-ba27-53936a6a7a27",
+										"exec": [
+											"pm.test(\"Duplicate Datum Name Found\", function(){",
+											"    pm.expect(pm.response.text()).to.include(\"Duplicate datum found\");",
+											"    console.log(pm.response.text());",
+											"    ",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"{{name}}\",\n\t\"description\": \"{{description}}\",\n\t\"definitionType\": \"{{definitionType}}\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Active/inactive datum name",
+					"item": [
+						{
+							"name": "De-activate datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a40e7a28-7a52-4919-8f84-994e1a486c4e",
+										"exec": [
+											"pm.test(\"Datum is deactivated successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).equal(pm.environment.get(\"Emailtypedatum\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"isDeleted\":true\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum/{{Emailtypedatum}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum",
+										"{{Emailtypedatum}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search schema for inactive datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "61cbb7b4-a323-4f84-96f6-1ce23e21a388",
+										"exec": [
+											"pm.test(\"Inactive datum is fetched successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.schema.name).equal(pm.environment.get(\"SchemaName\"));",
+											"console.log('Datum is deleted:',res.version.definitions[0].isDeleted);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema-id/{{SchemaId}}:{{version2}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema-id",
+										"{{SchemaId}}:{{version2}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Re-activate datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b9023f08-95a9-49ac-afeb-86ea4d1157f5",
+										"exec": [
+											"pm.test(\"Datum is reactivated successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).equal(pm.environment.get(\"Emailtypedatum\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"isDeleted\":false\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum/{{Emailtypedatum}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum",
+										"{{Emailtypedatum}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Duplicate schema name",
+					"item": [
+						{
+							"name": "Duplicate schema name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7ab00b45-1810-4394-8b4a-cc64483c6f01",
+										"exec": [
+											"pm.test(\"Duplicate schema found\", function(){",
+											"    pm.expect(pm.response.text()).to.include(\"Duplicate schema found\");",
+											"    console.log(pm.response.text());",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"{{SchemaName}}\",\n\t\"datumIds\":[\n\t\t{\n\t\t\t\"datumId\":\"{{Booleantypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"Test17\"\n\t\t}\n\t\t],\n\t\t\"description\": \"sample test1\",\n\t\t\"tags\": [\n\t\t{\n\t\t\t\"name\":\"test2\",\n\t\t\t\"value\":\"2\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"env2\",\n\t\t\t\"value\":\"qa\"\n\t\t}\n\t\t]\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Dataset creation with valid data",
+			"item": [
+				{
+					"name": "Dataset create with valid JSON file",
+					"item": [
+						{
+							"name": "Create valid JSON Dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c68ee587-fa1e-413c-84eb-bb226f0962d8",
+										"exec": [
+											"bodyData=JSON.parse(responseBody);",
+											"",
+											"",
+											"pm.environment.set(\"ValidJSONid\", bodyData[0].info.datasetId);",
+											"pm.environment.set(\"ValidJSONname\", bodyData[0].info.name);",
+											" ",
+											"pm.test(\"Dataset is created successfully\", function () {",
+											"bodyData=JSON.parse(responseBody);",
+											"    pm.expect(bodyData[0].info.name).equal(postman.getEnvironmentVariable(\"ValidJSONname\"));",
+											"    console.log(bodyData[0].info.name);",
+											"    console.log(postman.getEnvironmentVariable(\"ValidJSONname\"),':Dataset is created successfully');",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"sampledataset_json\",\n\t\"description\": \"sampledataset_json\",\n\t\"format\": \"json\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"datasetType\":\"user-uploaded\",\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/valid-JSON.json\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dataset/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dataset",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get dataset by ids",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "99893715-066f-4442-990f-29d4f6bda529",
+										"exec": [
+											"",
+											"pm.test(\"Dataset name matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res[0].info.name).equal(postman.getEnvironmentVariable(\"ValidJSONname\"));",
+											"console.log(res[0].info.name);",
+											"console.log(postman.getEnvironmentVariable(\"ValidJSONname\"),':fetched successfully');",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "b10a5356-e799-4b74-8a5a-835b5fbc3fdd",
+										"exec": [
+											"setTimeout(function(){}, [7000]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dataset/ids?id={{ValidJSONid}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dataset",
+										"ids"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "{{ValidJSONid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Associate schema with version to dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "605997ab-3ef2-44fd-b58f-c438c4725e63",
+										"exec": [
+											"",
+											"pm.test(\"Associated schema with version to dataset\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res[0].info.name).equal(postman.getEnvironmentVariable(\"ValidJSONname\"));",
+											"console.log(res[0].info.name);",
+											"console.log('Version:',postman.getEnvironmentVariable(\"Version\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"jsonType\":\"defineSchema\",\n\t\"datasetId\":\"{{ValidJSONid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"schemaId\":\"{{SchemaId}}:{{Version}}\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/events",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "cae9dbf7-3cd0-4c9c-81e5-08c253d29627",
+										"exec": [
+											"",
+											"pm.test(\"Dataset updated successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res.info.name).equal(postman.getEnvironmentVariable(\"ValidJSONname\"));",
+											"console.log(res.info.name);",
+											"console.log(postman.getEnvironmentVariable(\"ValidJSONname\"),':updated successfully');",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"datasetId\":\"{{ValidJSONid}}\",\n\t\"description\":\"testingdata2\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dataset/update",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dataset",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add tag to dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8ab0deb5-4d19-4de2-8aaa-f74209ceeb50",
+										"exec": [
+											"bodyData=JSON.parse(responseBody);",
+											"pm.environment.set(\"Tagname\", bodyData[0].tags[0].name);",
+											"",
+											"pm.test(\"Tag is added to dataset successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res[0].tags[0].name).equal(postman.getEnvironmentVariable(\"Tagname\"));",
+											"console.log(res[0].tags[0].name);",
+											"console.log(postman.getEnvironmentVariable(\"Tagname\"),':is added successfully');",
+											"",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"jsonType\":\"addTag\",\n\t\"datasetId\":\"{{ValidJSONid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"tagName\":\"env\",\n\t\"tagValue\":\"qa\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/events",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove tag from dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5ea261eb-ea0b-4e3f-aab4-cff592a12e71",
+										"exec": [
+											"",
+											"pm.test(\"Tag removed from dataset successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"pm.expect(pm.response.text()).to.not.include(postman.getEnvironmentVariable(\"Tagname\"));",
+											"",
+											"console.log(res[0].info.name);",
+											"console.log(postman.getEnvironmentVariable(\"Tagname\"),':is removed');",
+											"",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"jsonType\":\"removeTag\",\n\t\"datasetId\":\"{{ValidJSONid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"tagName\":\"{{Tagname}}\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/events",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"events"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Dataset create with valid csv file",
+					"item": [
+						{
+							"name": "Create valid CSV Dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c68ee587-fa1e-413c-84eb-bb226f0962d8",
+										"exec": [
+											"bodyData=JSON.parse(responseBody);",
+											"",
+											"pm.environment.set(\"ValidCSVid\", bodyData[0].info.datasetId);",
+											"pm.environment.set(\"ValidCSVname\", bodyData[0].info.name);",
+											"",
+											"pm.test(\"Dataset is created successfully\", function () {",
+											"bodyData=JSON.parse(responseBody);",
+											"    pm.expect(bodyData[0].info.name).equal(postman.getEnvironmentVariable(\"ValidCSVname\"));",
+											"    console.log(bodyData[0].info.name);",
+											"    console.log(postman.getEnvironmentVariable(\"ValidCSVname\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"sampledataset_csv\",\n\t\"description\": \"sampledataset_csv\",\n\t\"format\": \"csv\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"datasetType\":\"user-uploaded\",\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test/valid-CSV.csv\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dataset/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dataset",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get dataset by ids",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "99893715-066f-4442-990f-29d4f6bda529",
+										"exec": [
+											"",
+											"pm.test(\"Dataset name matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res[0].info.name).equal(postman.getEnvironmentVariable(\"ValidCSVname\"));",
+											"console.log(res[0].info.name);",
+											"console.log(postman.getEnvironmentVariable(\"ValidCSVname\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "b7fcecf2-6912-4a36-9fec-58f8eecb31f0",
+										"exec": [
+											"setTimeout(function(){}, [7000]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dataset/ids?id={{ValidCSVid}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dataset",
+										"ids"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "{{ValidCSVid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Associate schema with version to dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "605997ab-3ef2-44fd-b58f-c438c4725e63",
+										"exec": [
+											"",
+											"pm.test(\"Associated schema with version to dataset\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res[0].info.name).equal(postman.getEnvironmentVariable(\"ValidCSVname\"));",
+											"console.log(res[0].info.name);",
+											"console.log(postman.getEnvironmentVariable(\"ValidCSVname\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"jsonType\":\"defineSchema\",\n\t\"datasetId\":\"{{ValidCSVid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"schemaId\":\"{{SchemaId}}:{{Version}}\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/events",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "cae9dbf7-3cd0-4c9c-81e5-08c253d29627",
+										"exec": [
+											"",
+											"pm.test(\"Dataset updated successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res.info.name).equal(postman.getEnvironmentVariable(\"ValidCSVname\"));",
+											"console.log(res.info.name);",
+											"console.log(postman.getEnvironmentVariable(\"ValidCSVname\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"datasetId\":\"{{ValidCSVid}}\",\n\t\"description\":\"testingdata2\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dataset/update",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dataset",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add tag to dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b7a74476-6610-4baa-a8e9-80b48994daa9",
+										"exec": [
+											"",
+											"pm.test(\"Tag is added to dataset successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"pm.environment.set(\"Tagname\", res[0].tags[0].name);    ",
+											"pm.expect(res[0].tags[0].name).equal(postman.getEnvironmentVariable(\"Tagname\"));",
+											"console.log(res[0].tags[0].name);",
+											"console.log(postman.getEnvironmentVariable(\"Tagname\",'is added successfully'));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"jsonType\":\"addTag\",\n\t\"datasetId\":\"{{ValidCSVid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"tagName\":\"env\",\n\t\"tagValue\":\"qa\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/events",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove tag from dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f6f85591-e9e0-4c5a-b599-428d06125ee3",
+										"exec": [
+											"pm.test(\"Tag removed from dataset successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(pm.response.text()).to.not.include(postman.getEnvironmentVariable(\"Tagname\"));",
+											"console.log(res[0].info.name);",
+											"console.log(postman.getEnvironmentVariable(\"Tagname\"),':is removed');",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"jsonType\":\"removeTag\",\n\t\"datasetId\":\"{{ValidCSVid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"tagName\":\"{{Tagname}}\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/events",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"events"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Dataset creation with Invalid data",
+			"item": [
+				{
+					"name": "Dataset create with Invalid csv file",
+					"item": [
+						{
+							"name": "Create Invalid CSV Dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c68ee587-fa1e-413c-84eb-bb226f0962d8",
+										"exec": [
+											"bodyData=JSON.parse(responseBody);",
+											"",
+											"pm.environment.set(\"InvalidCSVid\", bodyData[0].info.datasetId);",
+											" pm.environment.set(\"InvalidCSVname\", bodyData[0].info.name);",
+											" ",
+											"pm.test(\"Body matches dataset name\", function () {",
+											"bodyData=JSON.parse(responseBody);",
+											"    pm.expect(bodyData[0].info.name).equal(postman.getEnvironmentVariable(\"InvalidCSVname\"));",
+											"    console.log(bodyData[0].info.name);",
+											"    console.log(postman.getEnvironmentVariable(\"InvalidCSVname\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"InvalidDataset-csv\",\n\t\"description\": \"InvalidDataset-csv\",\n\t\"format\": \"csv\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 1,\n\t\"numOfTrailerRows\": 0,\n\t\"datasetType\":\"user-uploaded\",\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test2/invalid-CSV.csv\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dataset/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dataset",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get dataset by ids",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "99893715-066f-4442-990f-29d4f6bda529",
+										"exec": [
+											"",
+											"pm.test(\"Dataset name matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res[0].info.name).equal(postman.getEnvironmentVariable(\"InvalidCSVname\"));",
+											"console.log(res[0].info.name);",
+											"console.log(postman.getEnvironmentVariable(\"InvalidCSVname\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "09586f15-b20a-4f61-b626-e7fc4e06b5d2",
+										"exec": [
+											"setTimeout(function(){}, [7000]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dataset/ids?id={{InvalidCSVid}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dataset",
+										"ids"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "{{InvalidCSVid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Associate schema with version to dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "605997ab-3ef2-44fd-b58f-c438c4725e63",
+										"exec": [
+											"",
+											"pm.test(\"Associated schema with version to dataset\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res[0].info.name).equal(postman.getEnvironmentVariable(\"InvalidCSVname\"));",
+											"console.log(res[0].info.name);",
+											"console.log(postman.getEnvironmentVariable(\"InvalidCSVname\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"jsonType\":\"defineSchema\",\n\t\"datasetId\":\"{{InvalidCSVid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"schemaId\":\"{{SchemaId}}:{{Version}}\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/events",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "cae9dbf7-3cd0-4c9c-81e5-08c253d29627",
+										"exec": [
+											"",
+											"pm.test(\"Dataset updated successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res.info.name).equal(postman.getEnvironmentVariable(\"InvalidCSVname\"));",
+											"console.log(res.info.name);",
+											"console.log(postman.getEnvironmentVariable(\"InvalidCSVname\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"datasetId\":\"{{InvalidCSVid}}\",\n\t\"description\":\"testingdata2\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dataset/update",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dataset",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add tag to dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b7a74476-6610-4baa-a8e9-80b48994daa9",
+										"exec": [
+											"pm.test(\"Tag is added to dataset successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"pm.environment.set(\"Tagname\", res[0].tags[0].name);    ",
+											"pm.expect(res[0].tags[0].name).equal(postman.getEnvironmentVariable(\"Tagname\"));",
+											"console.log(res[0].tags[0].name);",
+											"console.log(postman.getEnvironmentVariable(\"Tagname\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"jsonType\":\"addTag\",\n\t\"datasetId\":\"{{InvalidCSVid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"tagName\":\"env\",\n\t\"tagValue\":\"qa\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/events",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove tag from dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f6f85591-e9e0-4c5a-b599-428d06125ee3",
+										"exec": [
+											"pm.test(\"Tag removed from dataset successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(pm.response.text()).to.not.include(postman.getEnvironmentVariable(\"Tagname\"));",
+											"console.log(res[0].info.name);",
+											"console.log(postman.getEnvironmentVariable(\"Tagname\"),':is removed');",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"jsonType\":\"removeTag\",\n\t\"datasetId\":\"{{InvalidCSVid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"tagName\":\"{{Tagname}}\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/events",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"events"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Dataset create with Invalid JSON file",
+					"item": [
+						{
+							"name": "Create Invalid JSON Dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c68ee587-fa1e-413c-84eb-bb226f0962d8",
+										"exec": [
+											"bodyData=JSON.parse(responseBody);",
+											"",
+											"",
+											"pm.environment.set(\"InvalidJSONid\", bodyData[0].info.datasetId);",
+											"pm.environment.set(\"InvalidJSONname\", bodyData[0].info.name);",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"   ",
+											"pm.test(\"Body matches dataset name\", function () {",
+											"bodyData=JSON.parse(responseBody);",
+											"    pm.expect(bodyData[0].info.name).equal(postman.getEnvironmentVariable(\"InvalidJSONname\"));",
+											"    console.log(bodyData[0].info.name);",
+											"    console.log(postman.getEnvironmentVariable(\"InvalidJSONname\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"InvalidDataset-JSON\",\n\t\"description\": \"InvalidDataset-JSON\",\n\t\"format\": \"json\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"datasetType\":\"user-uploaded\",\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"test2/errorsJSON.json\",\n\t\t\"s3BucketName\": \"spr-barrel-dev-datasets\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"variable\",\n\t\t\t\"value\":\"def123\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dataset/",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dataset",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get dataset by ids",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "99893715-066f-4442-990f-29d4f6bda529",
+										"exec": [
+											"",
+											"pm.test(\"Dataset name matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res[0].info.name).equal(postman.getEnvironmentVariable(\"InvalidJSONname\"));",
+											"console.log(res[0].info.name);",
+											"console.log(postman.getEnvironmentVariable(\"InvalidJSONname\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "8d92b2b0-a30c-42a7-a83d-1c6333329073",
+										"exec": [
+											"setTimeout(function(){}, [7000]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dataset/ids?id={{InvalidJSONid}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dataset",
+										"ids"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "{{InvalidJSONid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Associate schema with version to dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "605997ab-3ef2-44fd-b58f-c438c4725e63",
+										"exec": [
+											"",
+											"pm.test(\"Associated schema with version to dataset\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res[0].info.name).equal(postman.getEnvironmentVariable(\"InvalidJSONname\"));",
+											"console.log(res[0].info.name);",
+											"console.log(postman.getEnvironmentVariable(\"InvalidJSONname\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"jsonType\":\"defineSchema\",\n\t\"datasetId\":\"{{InvalidJSONid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"schemaId\":\"{{SchemaId}}:{{Version}}\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/events",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "cae9dbf7-3cd0-4c9c-81e5-08c253d29627",
+										"exec": [
+											"",
+											"pm.test(\"Dataset updated successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res.info.name).equal(postman.getEnvironmentVariable(\"InvalidJSONname\"));",
+											"console.log(res.info.name);",
+											"console.log(postman.getEnvironmentVariable(\"InvalidJSONname\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"datasetId\":\"{{InvalidJSONid}}\",\n\t\"description\":\"testingdata2\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dataset/update",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dataset",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add tag to dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b7a74476-6610-4baa-a8e9-80b48994daa9",
+										"exec": [
+											"",
+											"pm.test(\"Tag is added to dataset successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"pm.environment.set(\"Tagname\", res[0].tags[0].name);    ",
+											"pm.expect(res[0].tags[0].name).equal(postman.getEnvironmentVariable(\"Tagname\"));",
+											"console.log(res[0].tags[0].name);",
+											"console.log(postman.getEnvironmentVariable(\"Tagname\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"jsonType\":\"addTag\",\n\t\"datasetId\":\"{{InvalidJSONid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"tagName\":\"env\",\n\t\"tagValue\":\"qa\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/events",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove tag from dataset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f6f85591-e9e0-4c5a-b599-428d06125ee3",
+										"exec": [
+											"",
+											"pm.test(\"Tag removed from dataset successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(pm.response.text()).to.not.include(postman.getEnvironmentVariable(\"Tagname\"));",
+											"console.log(res[0].info.name);",
+											"console.log(postman.getEnvironmentVariable(\"Tagname\"),':is removed');",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"jsonType\":\"removeTag\",\n\t\"datasetId\":\"{{InvalidJSONid}}\",\n\t\"clientId\":\"spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77\",\n\t\"tagName\":\"{{Tagname}}\",\n\t\"createdBy\":\"spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/events",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"events"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Delete Datum, Schema and Dataset",
+			"item": [
+				{
+					"name": "Delete Date Type Datum",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-spr-user-id",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/datum/{{datetypedatum}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"datum",
+								"{{datetypedatum}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Email Type Datum",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-spr-user-id",
+								"type": "text",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16"
+							},
+							{
+								"key": "x-spr-client-id",
+								"type": "text",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/datum/{{Emailtypedatum}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"datum",
+								"{{Emailtypedatum}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Integer Type Datum",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-spr-user-id",
+								"type": "text",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16"
+							},
+							{
+								"key": "x-spr-client-id",
+								"type": "text",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/datum/{{Integertypedatum}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"datum",
+								"{{Integertypedatum}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Float Type Datum",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-spr-user-id",
+								"type": "text",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16"
+							},
+							{
+								"key": "x-spr-client-id",
+								"type": "text",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/datum/{{floattypedatum}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"datum",
+								"{{floattypedatum}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Boolean Type Datum",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-spr-user-id",
+								"type": "text",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16"
+							},
+							{
+								"key": "x-spr-client-id",
+								"type": "text",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/datum/{{Booleantypedatum}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"datum",
+								"{{Booleantypedatum}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Phone-string",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-spr-user-id",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/datum/{{Phone-string}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"datum",
+								"{{Phone-string}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete string datum",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-spr-user-id",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/datum/{{stringdatum}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"datum",
+								"{{stringdatum}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Schema",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-spr-user-id",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/schema/{{SchemaId}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"schema",
+								"{{SchemaId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3ce79200-efa4-4859-920b-18b1aa36e1f8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e623dbdb-dd52-452e-886a-a6c68793447d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Delete Dataset",
+			"item": [
+				{
+					"name": "Delete Valid CSV Dataset",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-spr-user-id",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/dataset/{{ValidCSVid}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"dataset",
+								"{{ValidCSVid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Valid JSON Dataset",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-spr-user-id",
+								"type": "text",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16"
+							},
+							{
+								"key": "x-spr-client-id",
+								"type": "text",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/dataset/{{ValidJSONid}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"dataset",
+								"{{ValidJSONid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Invalid CSV Dataset",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-spr-user-id",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/dataset/{{InvalidCSVid}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"dataset",
+								"{{InvalidCSVid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Invalid JSON Dataset",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-spr-user-id",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/dataset/{{InvalidJSONid}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"dataset",
+								"{{InvalidJSONid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
