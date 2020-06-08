@@ -8,7 +8,7 @@ jobs:
        - checkout
        - newman/newman-run:
             collection: ./barrel_dex_collection copy.postman_collection.json
-            environment: ./Barrel QA.postman_environment.json
+            environment: ./Barrel_QA.postman_environment.json
 
 workflows:
   version: 2.1
