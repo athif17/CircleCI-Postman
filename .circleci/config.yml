@@ -13,7 +13,7 @@ jobs:
 workflows:
   version: 2.1
   schedule-workflow: 
-    #triggers:
+    triggers:
       - schedule:
           cron: "0 6,12,18,0 * * *"
           filters:
