@@ -7,7 +7,7 @@ jobs:
     steps:
        - checkout
        - newman/newman-run:
-            collection: ./DEX_DEV.postman_collection.json
+            collection: ./DEX DEV.postman_collection.json
             environment: ./BarrelDEV.postman_environment.json
 
 workflows:
