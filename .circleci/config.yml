@@ -9,7 +9,7 @@ jobs:
     steps:
        - checkout
        - newman/newman-run:
-            collection: ./barrel_dex_collection.json
+            collection: ./Test.postman_collection.json
             environment: ./Barrel_QA.postman_environment.json
        - slack/status:
             webhook: 'https://hooks.slack.com/services/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'
