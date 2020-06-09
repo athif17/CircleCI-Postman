@@ -1,0 +1,2129 @@
+{
+	"info": {
+		"_postman_id": "9374c628-c400-49eb-ad6d-7bd11a8e8112",
+		"name": "Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Datum and Schema Copy",
+			"item": [
+				{
+					"name": "Datum creation",
+					"item": [
+						{
+							"name": "Create Date type Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ccb1394e-a3d1-4bc8-a5c0-4938e6ca29de",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"datetypedatum\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"    console.log(res)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Date_Automation_{{$timestamp}}\",\n\t\"description\": \"Testdate\",\n\t\"definitionType\": \"date\",\n\t\"dateFormat\":\"YYYY-MM-DD\",\n    \"format\":\"date\",\n    \"examples\":\"2010-06-25\",\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"RunType\",\n\t\t\t\"value\":\"Automation\"\n\t\t}\n\t\t]\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								},
+								"description": "Creates a new datum in DB"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "af80ebd4-fb75-4244-be64-f447854a274c",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"name\", bodyData.name);",
+											"pm.environment.set(\"description\", bodyData.description);",
+											"pm.environment.set(\"definitionType\", bodyData.definitionType);",
+											"",
+											"pm.test(\"datum definition id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.datumDefinitionId).equal(postman.getEnvironmentVariable(\"datetypedatum\"));",
+											"    console.log(res.datumDefinitionId);",
+											"    console.log(postman.getEnvironmentVariable(\"datetypedatum\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dat-definition/{{datetypedatum}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dat-definition",
+										"{{datetypedatum}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Email type string Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "967f2d40-2a34-4ed8-94d5-0c6c1dcf4a1d",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"Emailtypedatum\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"    console.log(res)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Email_Automation_{{$timestamp}}\",\n\t\"description\": \"Testemail\",\n\t\"definitionType\": \"string\",\n    \"length\":\"25\",\n    \"format\":\"email\",\n    \"examples\":\"test@gmail.com\", \n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"RunType\",\n\t\t\t\"value\":\"Automation\"\n\t\t}\n\t\t]\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								},
+								"description": "Creates a new datum in DB"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5567fd27-7857-4dcb-b02b-c39346544830",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"name\", bodyData.name);",
+											"pm.environment.set(\"description\", bodyData.description);",
+											"pm.environment.set(\"definitionType\", bodyData.definitionType);",
+											"",
+											"pm.test(\"datum definition id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.datumDefinitionId).equal(postman.getEnvironmentVariable(\"Emailtypedatum\"));",
+											"    console.log(res.datumDefinitionId);",
+											"    console.log(postman.getEnvironmentVariable(\"Emailtypedatum\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dat-definition/{{Emailtypedatum}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dat-definition",
+										"{{Emailtypedatum}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Integer type Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "da188f14-efc7-43aa-bfb6-36d9767ff8cd",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"Integertypedatum\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"    console.log(res)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"type": "text",
+										"value": "{{userId}}"
+									},
+									{
+										"key": "x-spr-client-id",
+										"type": "text",
+										"value": "{{clientId}}"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Integer_Automation_{{$timestamp}}\",\n\t\"description\": \"TestInteger\",\n\t\"definitionType\": \"integer\",\n    \"examples\":\"7,77,777\",\n    \"min\":0,\n    \"max\":100000,\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"RunType\",\n\t\t\t\"value\":\"Automation\"\n\t\t}\n\t\t]\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								},
+								"description": "Creates a new datum in DB"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "506f4d20-e9b8-4ae4-b148-bebc566d1750",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"name\", bodyData.name);",
+											"pm.environment.set(\"description\", bodyData.description);",
+											"pm.environment.set(\"definitionType\", bodyData.definitionType);",
+											"",
+											"pm.test(\"datum definition id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.datumDefinitionId).equal(postman.getEnvironmentVariable(\"Integertypedatum\"));",
+											"    console.log(res.datumDefinitionId);",
+											"    console.log(postman.getEnvironmentVariable(\"Integertypedatum\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dat-definition/{{Integertypedatum}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dat-definition",
+										"{{Integertypedatum}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Float type Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "54816c5d-f959-4a49-82e1-211e3c2aaa60",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"floattypedatum\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"    console.log(res)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"type": "text",
+										"value": "{{userId}}"
+									},
+									{
+										"key": "x-spr-client-id",
+										"type": "text",
+										"value": "{{clientId}}"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Float_Automation_{{$timestamp}}\",\n\t\"description\": \"TestFloat\",\n\t\"definitionType\": \"float\",\n    \"examples\":\"44.56,777.65\",\n    \"min\":0,\n    \"max\":100000,\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"RunType\",\n\t\t\t\"value\":\"Automation\"\n\t\t}\n\t\t]\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								},
+								"description": "Creates a new datum in DB"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a745dd58-fed8-4c68-acf0-8328fca91c6e",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"name\", bodyData.name);",
+											"pm.environment.set(\"description\", bodyData.description);",
+											"pm.environment.set(\"definitionType\", bodyData.definitionType);",
+											"",
+											"pm.test(\"datum definition id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.datumDefinitionId).equal(postman.getEnvironmentVariable(\"floattypedatum\"));",
+											"    console.log(res.datumDefinitionId);",
+											"    console.log(postman.getEnvironmentVariable(\"floattypedatum\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dat-definition/{{floattypedatum}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dat-definition",
+										"{{floattypedatum}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Boolean type Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1a91e54d-a49f-46b2-a698-0e85b0e1d588",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"Booleantypedatum\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"    console.log(res)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"type": "text",
+										"value": "{{userId}}"
+									},
+									{
+										"key": "x-spr-client-id",
+										"type": "text",
+										"value": "{{clientId}}"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Boolean_Automation_{{$timestamp}}\",\n\t\"description\": \"TestBoolean\",\n\t\"definitionType\": \"boolean\",\n    \"examples\":\"Y,N\",\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"RunType\",\n\t\t\t\"value\":\"Automation\"\n\t\t}\n\t\t]\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								},
+								"description": "Creates a new datum in DB"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "eaa8ec6b-3dad-4cac-8326-334dcf3f3433",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"name\", bodyData.name);",
+											"pm.environment.set(\"description\", bodyData.description);",
+											"pm.environment.set(\"definitionType\", bodyData.definitionType);",
+											"",
+											"pm.test(\"datum definition id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.datumDefinitionId).equal(postman.getEnvironmentVariable(\"Booleantypedatum\"));",
+											"    console.log(res.datumDefinitionId);",
+											"    console.log(postman.getEnvironmentVariable(\"Booleantypedatum\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dat-definition/{{Booleantypedatum}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dat-definition",
+										"{{Booleantypedatum}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create string-Phone Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c8f3b994-fff8-4883-8360-49e119e9599e",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"Phone-string\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"    console.log(res)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"type": "text",
+										"value": "{{userId}}"
+									},
+									{
+										"key": "x-spr-client-id",
+										"type": "text",
+										"value": "{{clientId}}"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"String_Phone_{{$timestamp}}\",\n\t\"description\": \"String_Phone\",\n\t\"definitionType\": \"string\",\n\t\"examples\":\"user23\",\n    \"format\":\"regex\",\n    \"pattern\":\"(\\\\d{3})-(\\\\d{3})-(\\\\d{4})\",\n    \"length\":25,\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"RunType\",\n\t\t\t\"value\":\"Automation\"\n\t\t}\n\t\t]\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								},
+								"description": "Creates a new datum in DB"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3461b474-1954-442e-a3fd-5adce78cf966",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"name\", bodyData.name);",
+											"pm.environment.set(\"description\", bodyData.description);",
+											"pm.environment.set(\"definitionType\", bodyData.definitionType);",
+											"",
+											"pm.test(\"datum definition id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.datumDefinitionId).equal(postman.getEnvironmentVariable(\"Phone-string\"));",
+											"    console.log(res.datumDefinitionId);",
+											"    console.log(postman.getEnvironmentVariable(\"Phone-string\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/dat-definition/{{Phone-string}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"dat-definition",
+										"{{Phone-string}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create string datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "eb682946-3afb-4129-aade-c95050064588",
+										"exec": [
+											"bodyData=JSON.parse(responseBody)",
+											"",
+											"pm.environment.set(\"stringdatum\", bodyData);",
+											"",
+											"pm.test(\"datum id is generated\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).is.string (res);",
+											"    console.log(res)",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"stringdatum_{{$timestamp}}\",\n\t\"description\": \"stringdatum\",\n\t\"definitionType\": \"string\",\n\t\"examples\":\"user23\",\n    \"format\":\"regex\",\n    \"pattern\":\"[a-zA-Z0-9]\",\n    \"length\":25,\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"RunType\",\n\t\t\t\"value\":\"Automation\"\n\t\t}\n\t\t]\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Schema creation",
+					"item": [
+						{
+							"name": "Create Schema",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1f39b778-fcf7-4248-a432-671e82b7941a",
+										"exec": [
+											"response =JSON.parse(responseBody)\r",
+											"\r",
+											"pm.environment.set(\"SchemaId\", response.schemaId);\r",
+											"pm.environment.set(\"Version\", response.version);\r",
+											"\r",
+											"pm.test(\"SchemaId is generated\", function () {\r",
+											"    \r",
+											"    pm.expect(pm.response.text()).to.include(postman.getEnvironmentVariable(\"SchemaId\"));\r",
+											"    console.log(postman.getEnvironmentVariable(\"SchemaId\"));\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "37ae5fb8-c361-4efe-9cf3-50c35ada4ced",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"schema_Automation_{{$timestamp}}\",\n\t\"datumIds\":[\n\t\t{\n\t\t\t\"datumId\":\"{{Integertypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffno\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{Integertypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffid\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{stringdatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffname\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{stringdatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffaddress\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{datetypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffbirthdate\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{Emailtypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffemail\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{stringdatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffgender\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{floattypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffsalary\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{Phone-string}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffphone\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{stringdatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffstate\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{floattypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"stafftaxrate\"\n\t\t},\n\t\t{\n\t\t\t\"datumId\":\"{{Phone-string}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffaltphone\"\n\t\t}\n\t\t],\n\t\t\"description\": \"schema_Automation\",\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"RunType\",\n\t\t\t\"value\":\"Automation\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"spr:dex:tag::partnerId\",\n\t\t\t\"value\":\"spr:partner::5bcb5bd3-6b0c-4712-bee3-b291723d926e\",\n\t\t\t\"partnerName\": \"Paycom\"\n\t\t}\n\t\t]\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get particular schema",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "83119c88-4924-414b-b413-fa3187b24df6",
+										"exec": [
+											"response =JSON.parse(responseBody)",
+											"pm.environment.set(\"SchemaName\", response.schema.name);",
+											"",
+											"pm.test(\"schema id matched\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res.schema.id).equal(postman.getEnvironmentVariable(\"SchemaId\"));",
+											"console.log(res.schema.id);",
+											"console.log(postman.getEnvironmentVariable(\"SchemaId\"))",
+											"});",
+											"",
+											"",
+											"    "
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema-id/{{SchemaId}}:{{Version}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema-id",
+										"{{SchemaId}}:{{Version}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Adding new datum to schema",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0a7c49dc-2fcb-422d-a63e-ac3093b57aa6",
+										"exec": [
+											"response =JSON.parse(responseBody)",
+											"pm.environment.set(\"version2\", response.version);",
+											"",
+											"pm.test(\"new datum id is added to schema\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res.schemaId).equal(postman.getEnvironmentVariable(\"SchemaId\"));",
+											"pm.expect(res.version).equal(postman.getEnvironmentVariable(\"version2\"));",
+											"console.log(res.schemaId);",
+											"console.log(postman.getEnvironmentVariable(\"SchemaId\"));",
+											"console.log(res.version);",
+											"console.log(postman.getEnvironmentVariable(\"version2\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"{{SchemaName}}\",\n\t\"schemaId\": \"{{SchemaId}}\",\n\t\"description\": \"test\",\n\t\"datumIds\":[\n\t\t{\n\t\t\t\"datumId\":\"{{Emailtypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"staffaltemail\"\n\t\t}],\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"RunType\",\n\t\t\t\"value\":\"Automation\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"spr:dex:tag::partnerId\",\n\t\t\t\"value\":\"spr:partner::5bcb5bd3-6b0c-4712-bee3-b291723d926e\",\n\t\t\t\"partnerName\": \"Paycom\"\n\t\t}\n\t\t]\n}\t\t"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get schema after edit",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "17bd5206-3131-4df4-9caa-7f4306d2edf1",
+										"exec": [
+											"pm.test(\"new datum id and schema version are updated for the same schema sucessfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    ",
+											"pm.expect(res.schema.id).equal(postman.getEnvironmentVariable(\"SchemaId\"));",
+											"pm.expect(res.version.version.versionNumber).equal(postman.getEnvironmentVariable(\"version2\"));",
+											"console.log(res.schema.id);",
+											"console.log(postman.getEnvironmentVariable(\"SchemaId\"));",
+											"console.log(res.version.version.versionNumber);",
+											"console.log(postman.getEnvironmentVariable(\"version2\"))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema-id/{{SchemaId}}:{{version2}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema-id",
+										"{{SchemaId}}:{{version2}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Duplicate datum name",
+					"item": [
+						{
+							"name": "Duplicate datum name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4cd4032b-b875-4d2f-af0a-6f97e8c08c61",
+										"exec": [
+											"pm.test(\"Duplicate Datum Name Found\", function(){",
+											"    pm.expect(pm.response.text()).to.include(\"Duplicate datum found\");",
+											"    console.log(pm.response.text());",
+											"    ",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"{{name}}\",\n\t\"description\": \"{{description}}\",\n\t\"definitionType\": \"{{definitionType}}\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum-definition",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum-definition"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Active/inactive datum name",
+					"item": [
+						{
+							"name": "De-activate datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f6efce21-0d79-4cd5-a9f3-6af469ef6582",
+										"exec": [
+											"pm.test(\"Datum is deactivated successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).equal(pm.environment.get(\"Emailtypedatum\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"isDeleted\":true\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum/{{Emailtypedatum}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum",
+										"{{Emailtypedatum}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search schema for inactive datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5245abf9-4eba-499f-853d-11a25d91f353",
+										"exec": [
+											"pm.test(\"Inactive datum is fetched successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res.schema.name).equal(pm.environment.get(\"SchemaName\"));",
+											"console.log('Datum is deleted:',res.version.definitions[0].isDeleted);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema-id/{{SchemaId}}:{{version2}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema-id",
+										"{{SchemaId}}:{{version2}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Re-activate datum",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "33932343-63c7-4e94-8114-7aae20c92925",
+										"exec": [
+											"pm.test(\"Datum is reactivated successfully\", function(){",
+											"    var res=JSON.parse(responseBody);",
+											"    pm.expect(res).equal(pm.environment.get(\"Emailtypedatum\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"isDeleted\":false\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/datum/{{Emailtypedatum}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"datum",
+										"{{Emailtypedatum}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Duplicate schema name",
+					"item": [
+						{
+							"name": "Duplicate schema name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "70b5edff-9757-4630-b275-a24057847c97",
+										"exec": [
+											"pm.test(\"Duplicate schema found\", function(){",
+											"    pm.expect(pm.response.text()).to.include(\"Duplicate schema found\");",
+											"    console.log(pm.response.text());",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-spr-user-id",
+										"value": "{{userId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-client-id",
+										"value": "{{clientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-trace-id",
+										"value": "{{traceId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-spr-hc-parent-id",
+										"value": "{{hcParentId}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"{{SchemaName}}\",\n\t\"datumIds\":[\n\t\t{\n\t\t\t\"datumId\":\"{{Booleantypedatum}}\",\n\t\t\t\"isMandatory\":true,\n\t\t\t\"fieldName\":\"Test17\"\n\t\t}\n\t\t],\n\t\t\"description\": \"sample test1\",\n\t\t\"tags\": [\n\t\t{\n\t\t\t\"name\":\"test2\",\n\t\t\t\"value\":\"2\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"env2\",\n\t\t\t\"value\":\"qa\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"spr:dex:tag::partnerId\",\n\t\t\t\"value\":\"spr:partner::5bcb5bd3-6b0c-4712-bee3-b291723d926e\",\n\t\t\t\"partnerName\": \"Paycom\"\n\t\t}\n\t\t]\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/datasets/api/v1/schema",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"datasets",
+										"api",
+										"v1",
+										"schema"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Dataset create with valid JSON file Copy",
+			"item": [
+				{
+					"name": "Create valid JSON Dataset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a48bef2-3b7c-4114-9889-0d11f07ab39b",
+								"exec": [
+									"bodyData=JSON.parse(responseBody);",
+									"",
+									"",
+									"pm.environment.set(\"ValidJSONid\", bodyData[0].info.datasetId);",
+									"pm.environment.set(\"ValidJSONname\", bodyData[0].info.name);",
+									" ",
+									"pm.test(\"Dataset is created successfully\", function () {",
+									"bodyData=JSON.parse(responseBody);",
+									"    pm.expect(bodyData[0].info.name).equal(postman.getEnvironmentVariable(\"ValidJSONname\"));",
+									"    console.log(bodyData[0].info.name);",
+									"    console.log(postman.getEnvironmentVariable(\"ValidJSONname\"),':Dataset is created successfully');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-user-id",
+								"value": "{{userId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "{{clientId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-trace-id",
+								"value": "{{traceId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-hc-parent-id",
+								"value": "{{hcParentId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"sampledataset_json_{{$timestamp}}\",\n\t\"description\": \"sampledataset_json\",\n\t\"format\": \"json\",\n\t\"fileType\": \"full-file\",\n\t\"numOfHeaderRows\": 0,\n\t\"numOfTrailerRows\": 0,\n\t\"datasetType\":\"user-uploaded\",\n\t\"s3Urls\": [{\n\t\t\"s3KeyName\": \"{{keyname-JSON}}\",\n\t\t\"s3BucketName\": \"{{bucket}}\"\n\t}],\n\t\"sources\":{},\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"RunType\",\n\t\t\t\"value\":\"Automation\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"spr:dex:tag::partnerId\",\n\t\t\t\"value\":\"spr:partner::5bcb5bd3-6b0c-4712-bee3-b291723d926e\",\n\t\t\t\"partnerName\": \"Paycom\"\n\t\t}\n\t\t],\n\t\"columnMappingPolicy\":\"name-based\",\n\t\"isActive\":true\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/dataset/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"dataset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get dataset by ids",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "871aaa03-58f0-4523-896c-e1cd25512336",
+								"exec": [
+									"",
+									"pm.test(\"Dataset name matched and is standardized\", function(){",
+									"    var res=JSON.parse(responseBody);",
+									"    ",
+									"pm.expect(res[0].datasetStatus).equal(\"standardized\", 'DatasetId: ' + postman.getEnvironmentVariable(\"ValidJSONid\"));",
+									"pm.expect(res[0].info.name).equal(postman.getEnvironmentVariable(\"ValidJSONname\"));",
+									"console.log(res[0].info.name);",
+									"console.log(postman.getEnvironmentVariable(\"ValidJSONname\"),':fetched successfully');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "da167e53-9a3b-46aa-be6d-702de1c23d06",
+								"exec": [
+									"setTimeout(function () { }, [5000]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-user-id",
+								"value": "{{userId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "{{clientId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-trace-id",
+								"value": "{{traceId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-hc-parent-id",
+								"value": "{{hcParentId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/dataset/ids?id={{ValidJSONid}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"dataset",
+								"ids"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{ValidJSONid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Associate schema with version to dataset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8a01b8b7-5757-4118-ac78-783894f4410f",
+								"exec": [
+									"",
+									"pm.test(\"Associated schema with version to dataset\", function(){",
+									"    var res=JSON.parse(responseBody);",
+									"    ",
+									"pm.expect(res[0].info.name).equal(postman.getEnvironmentVariable(\"ValidJSONname\"));",
+									"console.log(res[0].info.name);",
+									"console.log('Version:',postman.getEnvironmentVariable(\"Version\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "{{clientId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-trace-id",
+								"value": "{{traceId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-hc-parent-id",
+								"value": "{{hcParentId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-user-id",
+								"value": "{{userId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"jsonType\":\"defineSchema\",\n\t\"datasetId\":\"{{ValidJSONid}}\",\n\t\"clientId\":\"{{clientId}}\",\n\t\"schemaId\":\"{{SchemaId}}:{{Version}}\",\n\t\"createdBy\":\"{{userId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/events",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "To check Dataset validation has Passed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f35b41a8-aa3c-4bcd-a254-1ebd2a01a553",
+								"exec": [
+									"",
+									"pm.test(\"Dataset validation passed\", function () {",
+									"    var res=pm.response.json();",
+									"    pm.expect(res[0].validationResult.validationStatus).equal(\"validated\", 'DatasetId: ' + postman.getEnvironmentVariable(\"ValidJSONid\"));",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "06da326a-535a-4b93-baf1-a7e2c051389e",
+								"exec": [
+									"setTimeout(function () { }, [5000]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-user-id",
+								"value": "spr:user::0108f9ee-bb6a-4ad4-8869-67974f33cc16",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "spr:clt::2c272194-89fc-45fb-9e64-9391b4a8bd77",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-trace-id",
+								"value": "{{traceId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-hc-parent-id",
+								"value": "{{hcParentId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/dataset/ids?id={{ValidJSONid}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"dataset",
+								"ids"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{ValidJSONid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update dataset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a880d61-72da-428e-9c6a-8f85000c38f4",
+								"exec": [
+									"",
+									"pm.test(\"Dataset updated successfully\", function(){",
+									"    var res=JSON.parse(responseBody);",
+									"    ",
+									"pm.expect(res.info.name).equal(postman.getEnvironmentVariable(\"ValidJSONname\"));",
+									"console.log(res.info.name);",
+									"console.log(postman.getEnvironmentVariable(\"ValidJSONname\"),':updated successfully');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-user-id",
+								"value": "{{userId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "{{clientId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-trace-id",
+								"value": "{{traceId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-hc-parent-id",
+								"value": "{{hcParentId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"datasetId\":\"{{ValidJSONid}}\",\n\t\"description\":\"testingdata2\",\n\t\"tags\":[\n\t\t{\n\t\t\t\"name\":\"RunType\",\n\t\t\t\"value\":\"Automation\"\n\t\t},\n\t\t{\n\t\t\t\"name\":\"spr:dex:tag::partnerId\",\n\t\t\t\"value\":\"spr:partner::5bcb5bd3-6b0c-4712-bee3-b291723d926e\",\n\t\t\t\"partnerName\": \"Paycom\"\n\t\t}\n\t\t]\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/dataset/update",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"dataset",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add tag to dataset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "89b295cb-07de-4da4-b34b-f67be294a9ae",
+								"exec": [
+									"pm.test(\"Tag is added to dataset successfully\", function(){",
+									"    var res=JSON.parse(responseBody);",
+									"pm.environment.set(\"Tagname\", res[0].tags[1].name);",
+									"pm.expect(res[0].tags[1].name).equal(postman.getEnvironmentVariable(\"Tagname\"));",
+									"console.log(res[0].tags[1].name);",
+									"console.log(postman.getEnvironmentVariable(\"Tagname\"),':is added successfully');",
+									"",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "{{clientId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-trace-id",
+								"value": "{{traceId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-hc-parent-id",
+								"value": "{{hcParentId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-user-id",
+								"value": "{{userId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"jsonType\":\"addTag\",\n\t\"datasetId\":\"{{ValidJSONid}}\",\n\t\"clientId\":\"{{clientId}}\",\n\t\"tagName\":\"env\",\n\t\"tagValue\":\"qa\",\n\t\"createdBy\":\"{{userId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/events",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove tag from dataset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "53f6c0ab-3b8e-4605-96d0-b2d4a0366f81",
+								"exec": [
+									"",
+									"pm.test(\"Tag removed from dataset successfully\", function(){",
+									"    var res=JSON.parse(responseBody);",
+									"pm.expect(pm.response.text()).to.not.include(postman.getEnvironmentVariable(\"Tagname\"));",
+									"",
+									"console.log(res[0].info.name);",
+									"console.log(postman.getEnvironmentVariable(\"Tagname\"),':is removed');",
+									"",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-client-id",
+								"value": "{{clientId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-trace-id",
+								"value": "{{traceId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-hc-parent-id",
+								"value": "{{hcParentId}}",
+								"type": "text"
+							},
+							{
+								"key": "x-spr-user-id",
+								"value": "{{userId}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"jsonType\":\"removeTag\",\n\t\"datasetId\":\"{{ValidJSONid}}\",\n\t\"clientId\":\"{{clientId}}\",\n\t\"tagName\":\"{{Tagname}}\",\n\t\"createdBy\":\"{{userId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/datasets/api/v1/events",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"datasets",
+								"api",
+								"v1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
